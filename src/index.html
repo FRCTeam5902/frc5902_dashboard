@@ -10,20 +10,17 @@
 <body>
     <!-- <div id="timer">2:15</div> -->
     <header>
-        <!-- Tells whether robot is connected to dashboard. -->
-        <div id="robot-state">Unknown state</div>
-        <button id="connect-button">Connect</button>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work.
         More explanation in that CSS rule. -->
-    <div id="cameraOne"></div>
-    <div id="cameraTwo"></div>
-    <div id="cameraThree"></div>
-    <div id="cameraFour"></div>
+    <div id="cameraOne" class="cam"></div>
+    <div id="cameraTwo" class= "cam"></div>
+    <div id="cameraFour" class="cam"></div>
 
 
     <!-- The main body of the dashboard, by default contains the gyro monitor and the robot diagram -->
     <article>
+            <div id="cameraThree" class="cam"></div>
         <!-- Gyroscope
         <svg id="gyro">
             <circle cx="85" cy="85" r="83"></circle>
@@ -32,26 +29,39 @@
             <text id="gyro-number" x="90" y="115">0º</text>
         </svg> -->
         <!-- Example robot diagram, arm moves when encoder value changes -->
-        <svg id="robot-diagram" width="332" height="450">
-            <text x="40" y="340">Robot Diagram</text>
-            <rect x="75" y="360" width="280" height="40"></rect>
-            <rect x="85" y="370" width="210" height="40"></rect>
-            <rect id="robot-arm" x="5" y="375" width="80" height="10"></rect>
-            <circle cx="100" cy="410" r="25"></circle>
-            <circle cx="175" cy="410" r="25"></circle>
-            <circle cx="260" cy="410" r="25"></circle>
+       <svg id="robot-diagram" width="332" height="450">
+            <text x="0" y="200">DuckBot Diagram</text>
+            <polygon points="70,390 300,390 300,200" class="triangle" />
+            <!-- <rect id="robot-arm" x="5" y="375" width="80" height="10"></rect> -->
+            <rect id="front-pistons" x="70" y="380" width="20" height="60"></rect>
+            <rect id="back-pistons" x="280" y="380" width="20" height="60"></rect>
+            <circle cx="120" cy="405" r="25"></circle>
+            <circle cx="185" cy="405" r="25"></circle>
+            <circle cx="250" cy="405" r="25"></circle>
             <rect x="60" y="380" width="250" height="30"></rect>
             <text id="team" x="185" y="405" text-anchor="middle">5902</text>
         </svg>
+    
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
+          <!-- Tells whether robot is connected to dashboard. -->
+          <div id="robot-state">Unknown state</div>
+          <button id="connect-button">Connect</button>
+
         <!-- Example button which toggles /SmartDashboard/exampleValue NetworkTables value.
             The <p> below then says the value. -->
         <div id="example-section">
             <button id="example-button">Change example value</button>
             <p id="example-readout">Value is undefined</p>
         </div>
+
+        <div id="drive-direction">
+        <button id="drive-direction-button">Change Drive Direction Value</button>
+        <p id="drive-direction-readout">Value of Drive Direction Here</p>
+        <img src="../images/am-4000_cargo.jpg" style="width:100%;height:100%;">
+        </div>
+        
         <!-- Autonomous selector -->
         <div class="select-container">
             <select id="auto-select">
@@ -59,15 +69,19 @@
                 <!-- This gets populated by JS -->
             </select>
         </div>
-        <div>
+        <!-- <div>
             <p>Adjust arm height</p>
             <input id="arm-position" type="range" min="0" max="1200" value="770">
-        </div>
+        </div> -->
+        <div id="logo">
+                <img src="pathtologo">
+            </div>
+            
     </aside>
-   <div id="login">
+    <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
         <button id="connect" disabled>Connecting</button>
-    </div>
+    </div> 
     <script src="networktables/networktables.js"></script>
     <script src="connection.js"></script>
     <script src="ui.js"></script>

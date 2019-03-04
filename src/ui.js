@@ -12,6 +12,15 @@ let ui = {
     },
     robotDiagram: {
         arm: document.getElementById('robot-arm')
+        
+        // Not sure why frontpistons & backpistons give error wanting a ',' below
+       // frontpistons: document.getElementById('front-pistons')
+        //backpistons: document.getElementById('front-pistons')
+
+    },
+    drivedirection: {
+        button: document.getElementById('drive-direction-button'),
+        readout: document.getElementById('drive-direction-readout').firstChild
     },
     example: {
         button: document.getElementById('example-button'),
@@ -57,7 +66,11 @@ NetworkTables.addKeyListener('/SmartDashboard/example_variable', (key, value) =>
     ui.example.button.classList.toggle('active', value);
     ui.example.readout.data = 'Value is ' + value;
 });
-
+NetworkTables.addKeyListener('/SmartDashboard/drive_direction', (key, value) => {
+    // Set class active if value is true and unset it if it is false
+    ui.drivedirection.button.classList.toggle('active', value);
+    ui.drivedirection.readout.data = 'Value is ' + value;
+});
 NetworkTables.addKeyListener('/robot/time', (key, value) => {
     // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
