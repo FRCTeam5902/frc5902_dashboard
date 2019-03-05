@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <!-- <div id="timer">2:15</div> -->
     <header>
     </header>
     <!-- You'll need to mess around with the CSS of #camera (found in css/style.css) to get it to work.
@@ -45,7 +44,9 @@
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
     <aside>
-          <!-- Tells whether robot is connected to dashboard. -->
+        <div id="timer">2:15</div>
+        
+        <!-- Tells whether robot is connected to dashboard. -->
           <div id="robot-state">Unknown state</div>
           <button id="connect-button">Connect</button>
 
@@ -57,9 +58,9 @@
         </div>
 
         <div id="drive-direction">
-        <button id="drive-direction-button">Change Drive Direction Value</button>
-        <p id="drive-direction-readout">Value of Drive Direction Here</p>
-        <img src="../images/am-4000_cargo.jpg" style="width:100%;height:100%;">
+        <button id="drive-direction-button">Toggle Drive Direction</button>
+        <p id="drive-direction-readout">Drive Direction Undefined</p>
+        <img id ="drive-img" src="../images/darth_duck.png" style="width:100%;height:100%;">
         </div>
         
         <!-- Autonomous selector -->

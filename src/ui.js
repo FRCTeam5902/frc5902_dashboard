@@ -66,11 +66,20 @@ NetworkTables.addKeyListener('/SmartDashboard/example_variable', (key, value) =>
     ui.example.button.classList.toggle('active', value);
     ui.example.readout.data = 'Value is ' + value;
 });
+
 NetworkTables.addKeyListener('/SmartDashboard/drive_direction', (key, value) => {
     // Set class active if value is true and unset it if it is false
     ui.drivedirection.button.classList.toggle('active', value);
-    ui.drivedirection.readout.data = 'Value is ' + value;
+    if (value == true) {
+        ui.drivedirection.readout.data = 'Cargo is Front';
+        document.getElementById("drive-img").src="../images/cargo.jpg";
+    }
+    else {    
+        ui.drivedirection.readout.data = 'Hatch is Front';
+        document.getElementById("drive-img").src="../images/hatch.jpeg";
+    }
 });
+
 NetworkTables.addKeyListener('/robot/time', (key, value) => {
     // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
@@ -103,6 +112,12 @@ ui.example.button.onclick = function() {
     // Set NetworkTables values to the opposite of whether button has active class.
     NetworkTables.putValue('/SmartDashboard/example_variable', this.className != 'active');
 };
+
+ui.drivedirection.button.onclick = function() {
+    // Set NetworkTables values to the opposite of whether button has active class.
+    NetworkTables.putValue('/SmartDashboard/drive_direction', this.className != 'active');
+};
+
 // Reset gyro value to 0 on click
 ui.gyro.container.onclick = function() {
     // Store previous gyro val, will now be subtracted from val for callibration
