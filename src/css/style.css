@@ -178,7 +178,6 @@ aside > * {
     bottom: 30;
     right: 10;
     overflow: hidden;
-    background-color: rgb(250, 26, 201);
 }
 #login {
     position: fixed;
