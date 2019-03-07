@@ -72,11 +72,11 @@ NetworkTables.addKeyListener('/SmartDashboard/drive_direction', (key, value) => 
     ui.drivedirection.button.classList.toggle('active', value);
     if (value == true) {
         ui.drivedirection.readout.data = 'Cargo is Front';
-        document.getElementById("drive-img").src="../images/cargo.jpg";
+        document.getElementById("drive-img").src="../images/cargo.png";
     }
     else {    
         ui.drivedirection.readout.data = 'Hatch is Front';
-        document.getElementById("drive-img").src="../images/hatch.jpeg";
+        document.getElementById("drive-img").src="../images/hatch.png";
     }
 });
 
