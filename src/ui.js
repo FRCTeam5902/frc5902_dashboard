@@ -24,7 +24,7 @@ let ui = {
     },
     example: {
         button: document.getElementById('example-button'),
-        readout: document.getElementById('example-readout').firstChild
+        readout: document.getElementById('FRC5902_test-readout').firstChild
     },
     autoSelect: document.getElementById('auto-select'),
     armPosition: document.getElementById('arm-position')
@@ -61,7 +61,7 @@ NetworkTables.addKeyListener('/SmartDashboard/arm/encoder', (key, value) => {
 });
 
 // This button is just an example of triggering an event on the robot by clicking a button.
-NetworkTables.addKeyListener('/SmartDashboard/example_variable', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/FRC5902_test', (key, value) => {
     // Set class active if value is true and unset it if it is false
     ui.example.button.classList.toggle('active', value);
     ui.example.readout.data = 'Value is ' + value;
