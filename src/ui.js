@@ -14,6 +14,9 @@ let ui = {
         button: document.getElementById('drive-direction-button'),
         readout: document.getElementById('drive-direction-readout').firstChild
     },
+    test: {
+        readout: document.getElementById('test-readout').firstChild
+    },
     autoSelect: document.getElementById('auto-select'),
     armPosition: document.getElementById('arm-position')
 };
@@ -21,8 +24,7 @@ let ui = {
 // This button is just an example of triggering an event on the robot by clicking a button.
 NetworkTables.addKeyListener('/SmartDashboard/FRC5902_test', (key, value) => {
     // Set class active if value is true and unset it if it is false
-    ui.example.button.classList.toggle('active', value);
-    ui.example.readout.data = 'Value is ' + value;
+    ui.test.readout.data = 'Value is ' + value;
 });
 
 NetworkTables.addKeyListener('/SmartDashboard/drive_direction', (key, value) => {
