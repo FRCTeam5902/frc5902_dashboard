@@ -3,16 +3,13 @@ let ui = {
     timer: document.getElementById('timer'),
     robotState: document.getElementById('robot-state').firstChild,
     robotDiagram: {
-        arm: document.getElementById('robot-arm')
-
+        // arm: document.getElementById('robot-arm')
         // Not sure why frontpistons & backpistons give error wanting a ',' below
        // frontpistons: document.getElementById('front-pistons')
         //backpistons: document.getElementById('front-pistons')
-
     },
-    drivedirection: {
-        button: document.getElementById('drive-direction-button'),
-        readout: document.getElementById('drive-direction-readout').firstChild
+    drivemode: {
+        readout: document.getElementById('drive-mode-readout').firstChild
     },
     test: {
         readout: document.getElementById('test-readout').firstChild
@@ -22,25 +19,24 @@ let ui = {
 };
 
 // This button is just an example of triggering an event on the robot by clicking a button.
-NetworkTables.addKeyListener('/SmartDashboard/FRC5902_test', (key, value) => {
-    // Set class active if value is true and unset it if it is false
-    ui.test.readout.data = 'Value is ' + value;
+NetworkTables.addKeyListener('/SmartDashboard/5902_test', (key, value) => {
+    ui.test.readout.data = value;
 });
 
-NetworkTables.addKeyListener('/SmartDashboard/drive_direction', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Drive_Mode', (key, value) => {
     // Set class active if value is true and unset it if it is false
-    ui.drivedirection.button.classList.toggle('active', value);
-    if (value == true) {
-        ui.drivedirection.readout.data = 'Cargo is Front';
+    ui.drivemode.readout.data = value;
+     if (value == 'Cargo Front') {
+        ui.drivemode.readout.data = value;
         document.getElementById("drive-img").src="../images/cargo.png";
     }
     else {
-        ui.drivedirection.readout.data = 'Hatch is Front';
+        ui.drivemode.readout.data = value;
         document.getElementById("drive-img").src="../images/hatch.png";
-    }
+    } 
 });
 
-NetworkTables.addKeyListener('/robot/time', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Time', (key, value) => {
     // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
     ui.timer.textContent = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
@@ -77,9 +73,10 @@ ui.autoSelect.onchange = function() {
     NetworkTables.putValue('/SmartDashboard/autonomous/selected', this.value);
 };
 // Get value of arm height slider when it's adjusted
-ui.armPosition.oninput = function() {
+
+/* ui.armPosition.oninput = function() {
     NetworkTables.putValue('/SmartDashboard/arm/encoder', parseInt(this.value));
-};
+ }; */
 
 addEventListener('error',(ev)=>{
     ipc.send('windowError',{mesg:ev.message,file:ev.filename,lineNumber:ev.lineno})
