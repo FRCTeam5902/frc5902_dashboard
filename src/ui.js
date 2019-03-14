@@ -4,9 +4,6 @@ let ui = {
     robotState: document.getElementById('robot-state').firstChild,
     robotDiagram: {
         // arm: document.getElementById('robot-arm')
-        // Not sure why frontpistons & backpistons give error wanting a ',' below
-       // frontpistons: document.getElementById('front-pistons')
-        //backpistons: document.getElementById('front-pistons')
     },
     drivemode: {
         readout: document.getElementById('drive-mode-readout').firstChild
@@ -44,7 +41,7 @@ NetworkTables.addKeyListener('/SmartDashboard/B Pistons', (key, value) => {
     } 
 });
 
-NetworkTables.addKeyListener('/SmartDashboard/Drive_Mode', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Drive Mode', (key, value) => {
     // Set class active if value is true and unset it if it is false
     ui.drivemode.readout.data = value;
      if (value == 'Cargo Front') {
