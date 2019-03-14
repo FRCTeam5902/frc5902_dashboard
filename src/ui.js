@@ -19,19 +19,27 @@ let ui = {
 };
 
 // This button is just an example of triggering an event on the robot by clicking a button.
-NetworkTables.addKeyListener('/SmartDashboard/5902_test', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/F Pistons', (key, value) => {
     ui.test.readout.data = value;
 
-    if (value == 'Teleop Enabled') {
-        ui.drivemode.readout.data = value;
+    if (value == 'false') {
         // makes pistons disappear when teleop is initiated
         document.getElementById("front-pistons").style="display:none;";
+    }
+    else {
+       //makes pistons come back when activated
+        document.getElementById("front-pistons").style="display:block;";
+    } 
+});
+
+NetworkTables.addKeyListener('/SmartDashboard/B Pistons', (key, value) => {
+
+    if (value == 'false') {
+        // makes pistons disappear when teleop is initiated
         document.getElementById("back-pistons").style="display:none;";
     }
     else {
-        ui.drivemode.readout.data = value;
        //makes pistons come back when activated
-        document.getElementById("front-pistons").style="display:block;";
         document.getElementById("back-pistons").style="display:block;";
     } 
 });
