@@ -76,10 +76,7 @@ NetworkTables.addKeyListener('/SmartDashboard/autonomous/selected', (key, value)
     ui.autoSelect.value = value;
 });
 
-ui.drivedirection.button.onclick = function() {
-    // Set NetworkTables values to the opposite of whether button has active class.
-    NetworkTables.putValue('/SmartDashboard/drive_direction', this.className != 'active');
-};
+
 
 // Update NetworkTables when autonomous selector is changed
 ui.autoSelect.onchange = function() {
