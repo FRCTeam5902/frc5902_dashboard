@@ -4,9 +4,6 @@ let ui = {
     robotState: document.getElementById('robot-state').firstChild,
     robotDiagram: {
         // arm: document.getElementById('robot-arm')
-        // Not sure why frontpistons & backpistons give error wanting a ',' below
-       // frontpistons: document.getElementById('front-pistons')
-        //backpistons: document.getElementById('front-pistons')
     },
     drivemode: {
         readout: document.getElementById('drive-mode-readout').firstChild
@@ -19,24 +16,32 @@ let ui = {
 };
 
 // This button is just an example of triggering an event on the robot by clicking a button.
-NetworkTables.addKeyListener('/SmartDashboard/5902_test', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/F Pistons', (key, value) => {
     ui.test.readout.data = value;
 
-    if (value == 'Teleop Enabled') {
-        ui.drivemode.readout.data = value;
+    if (value == 'false') {
         // makes pistons disappear when teleop is initiated
         document.getElementById("front-pistons").style="display:none;";
+    }
+    else {
+       //makes pistons come back when activated
+        document.getElementById("front-pistons").style="display:block;";
+    } 
+});
+
+NetworkTables.addKeyListener('/SmartDashboard/B Pistons', (key, value) => {
+
+    if (value == 'false') {
+        // makes pistons disappear when teleop is initiated
         document.getElementById("back-pistons").style="display:none;";
     }
     else {
-        ui.drivemode.readout.data = value;
        //makes pistons come back when activated
-        document.getElementById("front-pistons").style="display:block;";
         document.getElementById("back-pistons").style="display:block;";
     } 
 });
 
-NetworkTables.addKeyListener('/SmartDashboard/Drive_Mode', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Drive Mode', (key, value) => {
     // Set class active if value is true and unset it if it is false
     ui.drivemode.readout.data = value;
      if (value == 'Cargo Front') {
@@ -76,8 +81,11 @@ NetworkTables.addKeyListener('/SmartDashboard/autonomous/selected', (key, value)
     ui.autoSelect.value = value;
 });
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2df0af0fa3e0e02e0170f7291fc8f0f97ee340b4
 // Update NetworkTables when autonomous selector is changed
 ui.autoSelect.onchange = function() {
     NetworkTables.putValue('/SmartDashboard/autonomous/selected', this.value);
